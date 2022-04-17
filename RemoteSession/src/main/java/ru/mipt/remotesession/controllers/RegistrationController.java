@@ -40,8 +40,4 @@ public class RegistrationController {
         return "redirect:/";
     }
 
-    @GetMapping("/a")
-    public String a(Model model) {
-        return "a";
-    }
 }
