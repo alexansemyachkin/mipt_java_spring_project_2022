@@ -1,6 +1,7 @@
 package ru.mipt.remotesession.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.endpoint.RefreshEndpoint;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.cloud.context.restart.RestartEndpoint;
@@ -16,6 +17,9 @@ public class RegistrationController {
 
    @Autowired
    private RestartEndpoint restartEndpoint;
+
+   @Autowired
+   private RefreshEndpoint refreshEndpoint;
 
     @Autowired
     UserRepo userRepo;
@@ -36,7 +40,7 @@ public class RegistrationController {
         user.setGroupNumber(Integer.parseInt(groupNumber));
         user.setPassword(password);
         userRepo.save(user);
-        restartEndpoint.restart();
+        refreshEndpoint.refresh();
         return "redirect:/";
     }
 
