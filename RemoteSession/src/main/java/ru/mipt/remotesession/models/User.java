@@ -20,6 +20,18 @@ public class User {
     private String password;
 
 
+    public User(String name, String email, int groupNumber, String password){
+        this.name = name;
+        this.email = email;
+        this.groupNumber = groupNumber;
+        this.password = password;
+    }
+
+    public User() {
+
+    }
+
+
     public int getId() {
         return id;
     }
