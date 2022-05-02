@@ -11,30 +11,45 @@ import ru.mipt.remotesession.dto.UserDTO;
 import ru.mipt.remotesession.repos.UserRepo;
 import ru.mipt.remotesession.service.UserService;
 
+/**
+ * RegistrationController controller class
+ */
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
 
+    /** Field userRepo */
     @Autowired
     UserRepo userRepo;
 
+    /** Field userService */
+    @Autowired
     private UserService userService;
 
-    public RegistrationController(UserService userService) {
-        this.userService = userService;
-    }
 
+    /**
+     * @return UserDto Model
+     */
     @ModelAttribute("user")
     public UserDTO userDTO() {
         return new UserDTO();
     }
 
 
+    /**
+     * @param model of User
+     * @return view of registration
+     */
     @GetMapping
     public String registrationController(Model model) {
         return "registration";
     }
 
+    /**
+     * Saves newely registered user
+     * @param userDTO
+     * @return view of start page
+     */
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") UserDTO userDTO) {
         userService.save(userDTO);

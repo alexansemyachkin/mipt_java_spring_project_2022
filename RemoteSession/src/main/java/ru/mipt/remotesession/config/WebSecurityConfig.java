@@ -19,21 +19,37 @@ import ru.mipt.remotesession.service.UserService;
 
 import java.util.Scanner;
 
+/**
+ * WebSecurityConfig Configuration class extends WebSecurityConfigurerAdapter and sets up Spring security
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    /**
+     * Field userRepo
+     */
     @Autowired
     private UserRepo userRepo;
 
+
+    /**
+     * Field userService
+     */
     @Autowired
     private UserService userService;
 
+    /**
+     * @return Bean password encoder
+     */
     @Bean
     public static BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * @return authentication provider
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -42,32 +58,39 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return auth;
     }
 
-
-    @Autowired
-    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-
+    /**
+     * configures authentication
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
 
 
+    /**
+     * Describes logic of authentication process
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/registration", "/home")
+                .antMatchers("/", "/registration", "/start")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
+                .defaultSuccessUrl("/home", true)
                 .permitAll()
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/start")
                 .permitAll();
     }
 }

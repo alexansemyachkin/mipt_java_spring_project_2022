@@ -4,8 +4,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.mipt.remotesession.models.User;
 
-
+@Repository
 public interface UserRepo extends CrudRepository<User, Integer> {
-    User findByName(String name);
-    User findByEmail(String email);
+    /**
+     * Finds User by email.
+     * @param email String user email
+     * @return User
+     */
+    public User findByEmail(String email);
 }
