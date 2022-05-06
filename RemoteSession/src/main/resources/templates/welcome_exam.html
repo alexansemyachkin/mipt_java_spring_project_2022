@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Математический анализ</title>
+    <title th:text="${subject.name}"></title>
 </head>
 <body>
 <a th:text=" 'Вы выбрали сдачу экзамена по предмету : ' + ${subject.name} + '.' "></a>

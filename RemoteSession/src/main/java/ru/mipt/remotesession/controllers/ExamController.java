@@ -22,7 +22,7 @@ import java.util.List;
  * ExamController Controller class
  */
 @Controller
-@RequestMapping("/home/subjects")
+@RequestMapping("/home/subjects/subject{subjectId}/exam")
 public class ExamController {
 
 
@@ -33,7 +33,7 @@ public class ExamController {
     private SubjectServiceImpl subjectService;
 
 
-    @GetMapping("/subject" +"{subjectId}/exam")
+    @GetMapping
     public String welcomeExamPage(@PathVariable int subjectId, Model model) {
         Subject subject = subjectService.findSubjectById(subjectId);
         List<Question> questionList = questionService.findQuestionBySubjectId(subjectId);
@@ -46,10 +46,15 @@ public class ExamController {
         return "welcome_exam";
     }
 
-    @GetMapping("/subject" +"{subjectId}/exam/question" + "{questionId}")
-    public String examPage(@PathVariable int subjectId, @PathVariable int questionId, Model model, int iterator) {
+    @GetMapping("question" + "{questionId}")
+    public String examPage(@PathVariable int subjectId, @PathVariable int questionId, Model model, @RequestParam(name = "iterator", defaultValue = "0") int iterator) {
+        Subject subject = subjectService.findSubjectById(subjectId);
         Question question = questionService.findQuestionById(questionId);
         PossibleAnswers possibleAnswers = questionService.findPossibleAnswersByQuestionId(questionId);
+        model.addAttribute("subject", subject);
+        model.addAttribute("question", question);
+        model.addAttribute("possibleAnswers", possibleAnswers);
+        model.addAttribute("iterator", iterator);
         int questionNumber = questionService.findQuestionBySubjectId(subjectId).size();
         ++iterator;
         if (iterator < questionNumber) {
