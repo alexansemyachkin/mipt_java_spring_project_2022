@@ -11,7 +11,7 @@ public class StartPageController {
      */
     @GetMapping("/")
     public String defaultPage(){
-        return "redirect:/start";
+        return "redirect:/home";
     }
 
     /**
