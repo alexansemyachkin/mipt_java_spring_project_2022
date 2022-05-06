@@ -1,18 +1,16 @@
-package ru.mipt.remotesession.service;
+package ru.mipt.remotesession.service.interfaces;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.mipt.remotesession.dto.UserDTO;
 import ru.mipt.remotesession.models.User;
-import ru.mipt.remotesession.repos.UserRepo;
-
-import java.util.List;
+import ru.mipt.remotesession.service.classes.UserServiceImpl;
 
 public interface UserService extends UserDetailsService {
 
     /**
      * @param userDTO class transferring data to Data Base
      * @return User object
-     * @see UserServiceImpl#save(UserDTO) 
+     * @see UserServiceImpl#save(UserDTO)
      */
     public User save(UserDTO userDTO);
 }

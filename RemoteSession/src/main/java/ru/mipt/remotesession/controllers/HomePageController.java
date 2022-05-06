@@ -1,6 +1,5 @@
 package ru.mipt.remotesession.controllers;
 
-import org.hibernate.annotations.Comment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class HomePageController {
+
+
+
     /**
      * @return view of homepage
      */
@@ -16,4 +18,6 @@ public class HomePageController {
     public String homePage(){
         return "home";
     }
+
+
 }

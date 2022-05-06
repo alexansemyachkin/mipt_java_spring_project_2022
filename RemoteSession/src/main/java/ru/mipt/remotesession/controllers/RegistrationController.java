@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.mipt.remotesession.dto.UserDTO;
 import ru.mipt.remotesession.repos.UserRepo;
-import ru.mipt.remotesession.service.UserService;
+import ru.mipt.remotesession.service.classes.UserServiceImpl;
+import ru.mipt.remotesession.service.interfaces.UserService;
 
 /**
  * RegistrationController controller class
@@ -18,13 +19,9 @@ import ru.mipt.remotesession.service.UserService;
 @RequestMapping("/registration")
 public class RegistrationController {
 
-    /** Field userRepo */
-    @Autowired
-    UserRepo userRepo;
-
     /** Field userService */
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
 
     /**

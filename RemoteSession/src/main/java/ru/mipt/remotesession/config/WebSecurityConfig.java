@@ -9,15 +9,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import ru.mipt.remotesession.models.User;
 import ru.mipt.remotesession.repos.UserRepo;
-import ru.mipt.remotesession.service.UserService;
-
-import java.util.Scanner;
+import ru.mipt.remotesession.service.interfaces.UserService;
 
 /**
  * WebSecurityConfig Configuration class extends WebSecurityConfigurerAdapter and sets up Spring security

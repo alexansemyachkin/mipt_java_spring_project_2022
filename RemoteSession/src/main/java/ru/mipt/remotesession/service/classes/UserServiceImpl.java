@@ -1,4 +1,4 @@
-package ru.mipt.remotesession.service;
+package ru.mipt.remotesession.service.classes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,8 +9,7 @@ import ru.mipt.remotesession.details.UserDetail;
 import ru.mipt.remotesession.dto.UserDTO;
 import ru.mipt.remotesession.models.User;
 import ru.mipt.remotesession.repos.UserRepo;
-
-import java.util.List;
+import ru.mipt.remotesession.service.interfaces.UserService;
 
 
 @Service
