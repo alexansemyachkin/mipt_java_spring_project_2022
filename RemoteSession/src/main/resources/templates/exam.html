@@ -2,27 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title th:text="${subject.name}"></title>
+  <title th:text="${exam.subjectName}"></title>
 </head>
 <body>
 <form>
-  <p th:text="${question.questionToAnswer}"></p>
+  <p th:text="${question}"></p>
   <div>
     <input type="radio" id="firstAnswer" name="answer">
     <label for="firstAnswer" th:text="${possibleAnswers.possibleAnswer1}"></label>
-
+    <br>
     <input type="radio" id="secondAnswer" name="answer">
     <label for="firstAnswer" th:text="${possibleAnswers.possibleAnswer2}"></label>
-
+    <br>
     <input type="radio" id="thirdAnswer" name="answer">
     <label for="firstAnswer" th:text="${possibleAnswers.possibleAnswer3}"></label>
-
+    <br>
     <input type="radio" id="fourthAnswer" name="answer">
     <label for="firstAnswer" th:text="${possibleAnswers.possibleAnswer4}"></label>
   </div>
-<!--  <div>-->
-<!--    <button th:href=" 'exam/question' + ${questionList.get(iterator).id} " type="submit">Ответить</button>-->
-<!--  </div>-->
+  <div>
+    <form th:action=" 'exam/question' + ${exam.questionList.get(exam.getGivenAnswerCounter()).id} ">
+      <button >submit</button>
+    </form>
+  </div>
 </form>
 </body>
 </html>

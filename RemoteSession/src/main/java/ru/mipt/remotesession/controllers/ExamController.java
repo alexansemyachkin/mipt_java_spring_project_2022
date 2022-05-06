@@ -6,6 +6,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.mipt.remotesession.models.Exam;
 import ru.mipt.remotesession.models.PossibleAnswers;
 import ru.mipt.remotesession.models.Question;
 import ru.mipt.remotesession.models.Subject;
@@ -22,6 +23,7 @@ import java.util.List;
  * ExamController Controller class
  */
 @Controller
+@SessionAttributes("exam")
 @RequestMapping("/home/subjects/subject{subjectId}/exam")
 public class ExamController {
 
@@ -33,36 +35,29 @@ public class ExamController {
     private SubjectServiceImpl subjectService;
 
 
+    @ModelAttribute("exam")
+    public Exam exam() {
+        return new Exam();
+    }
+
     @GetMapping
-    public String welcomeExamPage(@PathVariable int subjectId, Model model) {
-        Subject subject = subjectService.findSubjectById(subjectId);
-        List<Question> questionList = questionService.findQuestionBySubjectId(subjectId);
-        int rightAnswerCounter = 0;
-        int iterator = 0;
-        model.addAttribute("subject", subject);
-        model.addAttribute("rightAnswerCounter", rightAnswerCounter);
-        model.addAttribute("questionList", questionList);
-        model.addAttribute("iterator", iterator);
+    public String welcomeExamPage(@ModelAttribute("exam") Exam exam ,@PathVariable int subjectId) {
+        exam.setQuestionList(questionService.findQuestionBySubjectId(subjectId));
+        exam.setSubjectName(subjectService.findSubjectById(subjectId).getName());
+        System.out.println(subjectId);
         return "welcome_exam";
     }
 
     @GetMapping("question" + "{questionId}")
-    public String examPage(@PathVariable int subjectId, @PathVariable int questionId, Model model, @RequestParam(name = "iterator", defaultValue = "0") int iterator) {
-        Subject subject = subjectService.findSubjectById(subjectId);
-        Question question = questionService.findQuestionById(questionId);
+    public String examPage(@ModelAttribute("exam") Exam exam, @PathVariable int questionId, Model model) {
+        int givenAnswerCounter = exam.getGivenAnswerCounter();
         PossibleAnswers possibleAnswers = questionService.findPossibleAnswersByQuestionId(questionId);
-        model.addAttribute("subject", subject);
-        model.addAttribute("question", question);
+        String questionToAnswer = exam.getQuestionList().get(givenAnswerCounter).getQuestionToAnswer();
+        exam.setGivenAnswerCounter(givenAnswerCounter + 1);
         model.addAttribute("possibleAnswers", possibleAnswers);
-        model.addAttribute("iterator", iterator);
-        int questionNumber = questionService.findQuestionBySubjectId(subjectId).size();
-        ++iterator;
-        if (iterator < questionNumber) {
-            return "exam";
-        }
-        else {
-            return "exam_completed";
-        }
+        model.addAttribute("question", questionToAnswer);
+        System.out.println(exam.getQuestionList().get(givenAnswerCounter).getId());
+        return "exam";
     }
 
     @PostMapping
