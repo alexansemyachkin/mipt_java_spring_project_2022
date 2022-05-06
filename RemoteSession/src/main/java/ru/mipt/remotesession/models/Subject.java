@@ -12,7 +12,7 @@ import java.util.List;
 public class Subject {
     /** Field id */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     /** Field name */

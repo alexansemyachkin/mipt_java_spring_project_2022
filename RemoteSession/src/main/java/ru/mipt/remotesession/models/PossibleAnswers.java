@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 public class PossibleAnswers {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     /** Field id */
     private int id;
 
