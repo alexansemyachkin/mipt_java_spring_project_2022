@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${exam.subjectName}"></title>
+    <title th:text="${exam.subject.name}"></title>
 </head>
 <body>
-<a th:text=" 'Вы выбрали сдачу экзамена по предмету : ' + ${exam.subjectName} + '.' "></a>
+<a th:text=" 'Вы выбрали сдачу экзамена по предмету : ' + ${exam.subject.name} + '.' "></a>
 <a th:type="text">Для начала теста нажмите на кнопку ниже. Обратите внимание, что возвращаться к вопросам нельзя.</a>
 <br>
 <br>
@@ -17,3 +17,4 @@
 </form>
 </body>
 </html>
+

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title> Экзамен завершен</title>
 </head>
 <body>
-
+<form>
+    <p>Поздравляем, экзамен завершен!</p>
+    <p th:text=" 'Количество верных ответов : ' + ${exam.rightAnswerCounter}"></p>
+</form>
 </body>
 </html>

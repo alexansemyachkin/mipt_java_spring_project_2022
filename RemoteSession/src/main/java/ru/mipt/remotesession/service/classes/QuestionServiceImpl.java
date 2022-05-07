@@ -41,8 +41,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public boolean compareAnswers(int answer) {
-        return false;
+    public boolean compareAnswers(int questionId, int answer) {
+        return questionRepo.findQuestionById(questionId).getRightAnswerIndex() == answer;
     }
 
 

@@ -12,5 +12,5 @@ public interface QuestionService {
     public List<Question> findQuestionBySubjectId(int id);
     public PossibleAnswers findPossibleAnswersByQuestionId(int id);
     public List<Question> findAll();
-    public boolean compareAnswers(int answer);
+    public boolean compareAnswers(int questionId, int answer);
 }
