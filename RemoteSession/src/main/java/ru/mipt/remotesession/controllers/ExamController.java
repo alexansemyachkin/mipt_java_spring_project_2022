@@ -1,10 +1,9 @@
 package ru.mipt.remotesession.controllers;
 
-import org.h2.engine.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.mipt.remotesession.dto.UserDTO;
 import ru.mipt.remotesession.models.Exam;
 import ru.mipt.remotesession.models.PossibleAnswers;
 import ru.mipt.remotesession.models.Question;
@@ -16,7 +15,7 @@ import ru.mipt.remotesession.service.classes.SubjectServiceImpl;
  * ExamController Controller class
  */
 @Controller
-@SessionAttributes("exam")
+@SessionAttributes({"exam", "user"})
 @RequestMapping("/home/subjects/subject{subjectId}/exam")
 public class ExamController {
 
@@ -31,6 +30,11 @@ public class ExamController {
     @ModelAttribute("exam")
     public Exam exam() {
         return new Exam();
+    }
+
+    @ModelAttribute("user")
+    public UserDTO user() {
+        return new UserDTO();
     }
 
     @GetMapping
@@ -66,4 +70,11 @@ public class ExamController {
         return "redirect:/home/subjects/subject" + exam.getSubject().getId() + "/exam/test";
     }
 
+//    @GetMapping("/completed")
+//    public String examCompleted(@ModelAttribute("exam") Exam exam, @ModelAttribute("user") UserDTO user) {
+//        int passedExamAmount = user.getPassedExamsAmount();
+//        user.setPassedExamsAmount(passedExamAmount + 1);
+//    }
+//
 }
+
