@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     /** Field User Reporitory */
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
 
 
     /** Field password encoder */

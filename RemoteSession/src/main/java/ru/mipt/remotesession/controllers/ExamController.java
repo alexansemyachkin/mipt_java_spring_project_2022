@@ -19,7 +19,7 @@ import ru.mipt.remotesession.service.classes.UserServiceImpl;
  * ExamController Controller class
  */
 @Controller
-@SessionAttributes({"exam", "user"})
+@SessionAttributes("exam")
 @RequestMapping("/home/subjects/subject{subjectId}/exam")
 public class ExamController {
 
@@ -37,12 +37,6 @@ public class ExamController {
     @ModelAttribute("exam")
     public Exam exam() {
         return new Exam();
-    }
-
-    @ModelAttribute("user")
-    public UserDTO user() {
-        User user = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getGroupNumber(), user.getPassword(), user.getPassedExamsAmount(), user.getPassedExamsMarksSum(), user.getRoles());
     }
 
     private int putMark(int rightAnswerCounter, int givenAnswerCounter) {
@@ -84,16 +78,14 @@ public class ExamController {
     }
 
     @PostMapping("/completed")
-    public String examCompleted(@ModelAttribute("exam") Exam exam, @ModelAttribute("user") UserDTO user) {
+    public String examCompleted(@ModelAttribute("exam") Exam exam, @SessionAttribute("user") User user) {
         int passedExamAmount = user.getPassedExamsAmount();
         int passedExamMarksSum = user.getPassedExamsMarksSum();
         user.setPassedExamsAmount(passedExamAmount + 1);
         user.setPassedExamsMarksSum(passedExamMarksSum + putMark(exam.getRightAnswerCounter(), exam.getGivenAnswerCounter()));
-        userService.update(user);
+        userService.update(new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getGroupNumber(), user.getPassword(), user.getPassedExamsAmount(), user.getPassedExamsMarksSum(), user.getRoles()));
         exam.clean();
         return "redirect:/home";
     }
 
 }
-
-//11@gmail.com
