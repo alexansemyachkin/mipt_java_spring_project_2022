@@ -65,52 +65,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-
-//    @Configuration
-//    @Order(1)
-//    public static class AdminConfigurationAdapter extends WebSecurityConfigurerAdapter {
-//
-//        public void configure(HttpSecurity http) throws Exception {
-//            http
-//                    .antMatcher("/admin/**")
-//                    .authorizeRequests()
-//                    .anyRequest()
-//                    .hasAuthority("ADMIN_PRIVILEGE")
-//                    .and()
-//
-//        }
-//    }
-
-
-    @Configuration
-    @Order(2)
-    public static class UserConfigurationAdapter extends WebSecurityConfigurerAdapter {
-
-
-        /**
-         * Describes logic of authentication process
-         *
-         * @param http
-         * @throws Exception
-         */
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.authorizeRequests()
-                    .antMatchers("/", "/registration", "/start")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated()
-                    .and()
-                    .formLogin()
-                    .defaultSuccessUrl("/home", true)
-                    .permitAll()
-                    .and()
-                    .logout()
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/start")
-                    .permitAll();
-        }
+    /**
+     * Describes logic of authentication process
+     *
+     * @param http
+     * @throws Exception
+     */
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/", "/registration", "/start")
+                .permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .defaultSuccessUrl("/home", true)
+                .permitAll()
+                .and()
+                .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/start")
+                .permitAll();
     }
 }

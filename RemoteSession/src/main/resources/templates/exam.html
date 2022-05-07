@@ -5,6 +5,7 @@
   <title th:text="${exam.subject.name}"></title>
 </head>
 <body>
+<script src="../js/exam.js" type="text/javascript"></script>
 <form th:action="@{test}" method="post" th:object="${exam}">
   <p th:text="${exam.currentQuestion.questionToAnswer}"></p>
   <div>
@@ -30,7 +31,6 @@
     <button type="submit" class="btn-success">Отправить</button>
     <button type="reset" class="btn-success">Сбросить</button>
   </div>
-  <script src="../exam.js"></script>
 </form>
 </body>
 </html>

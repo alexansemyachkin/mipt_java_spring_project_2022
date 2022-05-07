@@ -80,4 +80,12 @@ public class Exam {
         this.questionList = new ArrayList<>();
     }
 
+    public void clean() {
+        this.givenAnswerCounter = 0;
+        this.rightAnswerCounter = 0;
+        this.currentAnswer = 0;
+        this.subject = new Subject();
+        this.questionList = new ArrayList<>();
+    }
+
 }

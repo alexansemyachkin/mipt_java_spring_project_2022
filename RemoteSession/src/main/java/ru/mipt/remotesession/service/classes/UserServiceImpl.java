@@ -1,15 +1,21 @@
 package ru.mipt.remotesession.service.classes;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.mipt.remotesession.details.UserDetail;
 import ru.mipt.remotesession.dto.UserDTO;
+import ru.mipt.remotesession.models.Role;
 import ru.mipt.remotesession.models.User;
 import ru.mipt.remotesession.repos.UserRepo;
 import ru.mipt.remotesession.service.interfaces.UserService;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -44,9 +50,10 @@ public class UserServiceImpl implements UserService {
      * @param userDTO class transferring data to Data Base
      * @return User object
      */
+    @Override
     public User save(UserDTO userDTO) {
         User user = new User(userDTO.getName(), userDTO.getEmail(),
-                userDTO.getGroupNumber(), passwordEncoder.encode(userDTO.getPassword()));
+                userDTO.getGroupNumber(), passwordEncoder.encode(userDTO.getPassword()), List.of(new Role(1, "ROLE_USER")));
         return userRepo.save(user);
     }
 
@@ -68,6 +75,9 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
-        return new UserDetail(user);
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+    }
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 }

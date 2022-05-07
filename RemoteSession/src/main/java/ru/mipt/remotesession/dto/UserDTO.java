@@ -1,5 +1,9 @@
 package ru.mipt.remotesession.dto;
 
+import ru.mipt.remotesession.models.Role;
+
+import java.util.Collection;
+
 /**
  * UserDTO class transferring data to Data Base with fields
  */
@@ -14,6 +18,15 @@ public class UserDTO {
     private String password;
     private int passedExamsAmount;
     private int passedExamsMarksSum;
+    private Collection<Role> roles;
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
 
     /**
      * UserDTO default constructor
@@ -30,15 +43,18 @@ public class UserDTO {
      * @param groupNumber User's group number
      * @param password User's password
      */
-    public UserDTO(int id, String name, String email, int groupNumber, String password) {
+    public UserDTO(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, Collection<Role> roles) {
         this.setId(id);
         this.setName(name);
         this.setEmail(email);
         this.setGroupNumber(groupNumber);
         this.setPassword(password);
-        this.setPassedExamsAmount(0);
-        this.setPassedExamsMarksSum(0);
+        this.setPassedExamsAmount(passedExamsAmount);
+        this.setPassedExamsMarksSum(passedExamsMarksSum);
+        this.setRoles(roles);
     }
+
+
 
     public int getId() {
         return id;

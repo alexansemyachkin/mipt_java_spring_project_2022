@@ -2,10 +2,8 @@ package ru.mipt.remotesession.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import ru.mipt.remotesession.details.UserDetail;
 import ru.mipt.remotesession.dto.UserDTO;
 import ru.mipt.remotesession.models.Exam;
 import ru.mipt.remotesession.models.PossibleAnswers;
@@ -14,6 +12,7 @@ import ru.mipt.remotesession.models.User;
 import ru.mipt.remotesession.service.classes.QuestionServiceImpl;
 import ru.mipt.remotesession.service.classes.SubjectServiceImpl;
 import ru.mipt.remotesession.service.classes.UserServiceImpl;
+
 
 
 /**
@@ -42,27 +41,13 @@ public class ExamController {
 
     @ModelAttribute("user")
     public UserDTO user() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserDetail userDetail = (UserDetail) principal;
-        User user = userService.findByEmail(userDetail.getUsername());
-        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getGroupNumber(), user.getPassword());
+        User user = userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getGroupNumber(), user.getPassword(), user.getPassedExamsAmount(), user.getPassedExamsMarksSum(), user.getRoles());
     }
 
     private int putMark(int rightAnswerCounter, int givenAnswerCounter) {
         double percentage = (double) (rightAnswerCounter * 100 / givenAnswerCounter);
-        if (percentage >= 90) {
-            return 5;
-        }
-
-        else if (percentage >= 80) {
-            return 4;
-        }
-        else if (percentage >= 60) {
-            return 3;
-        }
-        else {
-            return 2;
-        }
+        return (int) (percentage / 10);
     }
 
     @GetMapping
@@ -104,11 +89,11 @@ public class ExamController {
         int passedExamMarksSum = user.getPassedExamsMarksSum();
         user.setPassedExamsAmount(passedExamAmount + 1);
         user.setPassedExamsMarksSum(passedExamMarksSum + putMark(exam.getRightAnswerCounter(), exam.getGivenAnswerCounter()));
-        System.out.println(user.getPassedExamsAmount());
-        System.out.println(user.getPassedExamsMarksSum());
         userService.update(user);
+        exam.clean();
         return "redirect:/home";
     }
 
 }
 
+//11@gmail.com

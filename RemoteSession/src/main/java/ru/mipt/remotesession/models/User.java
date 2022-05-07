@@ -1,6 +1,8 @@
 package ru.mipt.remotesession.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Class User with fields id, name, email, groupNumber,
@@ -33,6 +35,9 @@ public class User {
     /** Field passedExamsMarksSum */
     private int passedExamsMarksSum;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles;
+
 
     public User(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum){
         this.setId(id);
@@ -51,13 +56,14 @@ public class User {
      * @param groupNumber User's group number
      * @param password User's password
      */
-    public User(String name, String email, int groupNumber, String password){
+    public User(String name, String email, int groupNumber, String password, Collection<Role> roles){
         this.setName(name);
         this.setEmail(email);
         this.setGroupNumber(groupNumber);
         this.setPassword(password);
         this.setPassedExamsAmount(0);
         this.setPassedExamsMarksSum(0);
+        this.setRoles(roles);
     }
 
 
@@ -67,6 +73,14 @@ public class User {
     public User() {
         this.setPassedExamsAmount(0);
         this.setPassedExamsMarksSum(0);
+    }
+
+    public Collection<Role> getRoles() {
+        return roles.stream().toList();
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     /**
