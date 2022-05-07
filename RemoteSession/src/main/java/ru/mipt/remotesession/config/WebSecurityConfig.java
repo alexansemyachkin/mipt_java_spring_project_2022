@@ -3,6 +3,7 @@ package ru.mipt.remotesession.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -55,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * configures authentication
+     *
      * @param auth
      * @throws Exception
      */
@@ -64,28 +66,51 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    /**
-     * Describes logic of authentication process
-     * @param http
-     * @throws Exception
-     */
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/**", "/registration", "/start")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .defaultSuccessUrl("/home", true)
-                .permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/start")
-                .permitAll();
+    @Configuration
+    @Order(1)
+    public static class AdminConfigurationAdapter extends WebSecurityConfigurerAdapter {
+
+        public void configure(HttpSecurity http) throws Exception {
+            http
+                    .antMatcher("/admin/**")
+                    .authorizeRequests()
+                    .anyRequest()
+                    .hasAuthority("ADMIN_PRIVILEGE")
+                    .and()
+
+        }
+    }
+
+
+    @Configuration
+    @Order(2)
+    public static class UserConfigurationAdapter extends WebSecurityConfigurerAdapter {
+
+
+        /**
+         * Describes logic of authentication process
+         *
+         * @param http
+         * @throws Exception
+         */
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests()
+                    .antMatchers("/", "/registration", "/start")
+                    .permitAll()
+                    .anyRequest()
+                    .authenticated()
+                    .and()
+                    .formLogin()
+                    .defaultSuccessUrl("/home", true)
+                    .permitAll()
+                    .and()
+                    .logout()
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutSuccessUrl("/start")
+                    .permitAll();
+        }
     }
 }
