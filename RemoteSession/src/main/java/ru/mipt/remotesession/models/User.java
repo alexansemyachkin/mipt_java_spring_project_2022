@@ -8,9 +8,11 @@ import javax.persistence.*;
  */
 @Entity
 public class User {
+
     /** Field id */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
 
     /** Field name */
@@ -30,6 +32,17 @@ public class User {
 
     /** Field passedExamsMarksSum */
     private int passedExamsMarksSum;
+
+
+    public User(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum){
+        this.setId(id);
+        this.setName(name);
+        this.setEmail(email);
+        this.setGroupNumber(groupNumber);
+        this.setPassword(password);
+        this.setPassedExamsAmount(passedExamsAmount);
+        this.setPassedExamsMarksSum(passedExamsMarksSum);
+    }
 
     /**
      * User object constructor
@@ -56,7 +69,6 @@ public class User {
         this.setPassedExamsMarksSum(0);
     }
 
-
     /**
      * User's id getter method
      * @return int id
@@ -65,7 +77,9 @@ public class User {
         return id;
     }
 
-
+    public void setId(int id) {
+        this.id = id;
+    }
     /**
      * User's name getter method
      * @return String name

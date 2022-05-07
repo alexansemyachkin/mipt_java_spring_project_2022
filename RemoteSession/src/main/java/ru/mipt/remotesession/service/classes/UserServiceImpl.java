@@ -32,15 +32,28 @@ public class UserServiceImpl implements UserService {
     }
 
 
+
+    @Override
+    public User update(UserDTO userDTO) {
+        User user = new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail(),
+                userDTO.getGroupNumber(), passwordEncoder.encode(userDTO.getPassword()), userDTO.getPassedExamsAmount(), userDTO.getPassedExamsMarksSum());
+        return userRepo.save(user);
+    }
+
     /**
      * @param userDTO class transferring data to Data Base
      * @return User object
      */
-    @Override
     public User save(UserDTO userDTO) {
         User user = new User(userDTO.getName(), userDTO.getEmail(),
                 userDTO.getGroupNumber(), passwordEncoder.encode(userDTO.getPassword()));
         return userRepo.save(user);
+    }
+
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepo.findByEmail(email);
     }
 
 

@@ -66,20 +66,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Configuration
-    @Order(1)
-    public static class AdminConfigurationAdapter extends WebSecurityConfigurerAdapter {
-
-        public void configure(HttpSecurity http) throws Exception {
-            http
-                    .antMatcher("/admin/**")
-                    .authorizeRequests()
-                    .anyRequest()
-                    .hasAuthority("ADMIN_PRIVILEGE")
-                    .and()
-
-        }
-    }
+//    @Configuration
+//    @Order(1)
+//    public static class AdminConfigurationAdapter extends WebSecurityConfigurerAdapter {
+//
+//        public void configure(HttpSecurity http) throws Exception {
+//            http
+//                    .antMatcher("/admin/**")
+//                    .authorizeRequests()
+//                    .anyRequest()
+//                    .hasAuthority("ADMIN_PRIVILEGE")
+//                    .and()
+//
+//        }
+//    }
 
 
     @Configuration

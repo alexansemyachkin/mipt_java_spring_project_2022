@@ -5,6 +5,9 @@ package ru.mipt.remotesession.dto;
  */
 public class UserDTO {
 
+
+
+    private int id;
     private String name;
     private String email;
     private int groupNumber;
@@ -27,7 +30,8 @@ public class UserDTO {
      * @param groupNumber User's group number
      * @param password User's password
      */
-    public UserDTO(String name, String email, int groupNumber, String password) {
+    public UserDTO(int id, String name, String email, int groupNumber, String password) {
+        this.setId(id);
         this.setName(name);
         this.setEmail(email);
         this.setGroupNumber(groupNumber);
@@ -35,6 +39,15 @@ public class UserDTO {
         this.setPassedExamsAmount(0);
         this.setPassedExamsMarksSum(0);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * UserDTO's name getter method
      * @return String name

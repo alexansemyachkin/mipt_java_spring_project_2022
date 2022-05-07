@@ -13,4 +13,6 @@ public interface UserService extends UserDetailsService {
      * @see UserServiceImpl#save(UserDTO)
      */
     public User save(UserDTO userDTO);
+    public User update(UserDTO userDTO);
+    public User findByEmail(String email);
 }
