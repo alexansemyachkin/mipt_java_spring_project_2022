@@ -8,6 +8,7 @@ import ru.mipt.remotesession.models.Exam;
 import ru.mipt.remotesession.models.PossibleAnswers;
 import ru.mipt.remotesession.models.Question;
 import ru.mipt.remotesession.models.User;
+import ru.mipt.remotesession.service.classes.PossibleAnswersServiceImpl;
 import ru.mipt.remotesession.service.classes.QuestionServiceImpl;
 import ru.mipt.remotesession.service.classes.SubjectServiceImpl;
 import ru.mipt.remotesession.service.classes.UserServiceImpl;
@@ -23,6 +24,8 @@ import java.math.BigDecimal;
 @RequestMapping("/home/subjects/subject{subjectId}/exam")
 public class ExamController {
 
+    @Autowired
+    private PossibleAnswersServiceImpl possibleAnswersService;
 
     @Autowired
     private QuestionServiceImpl questionService;
@@ -59,10 +62,10 @@ public class ExamController {
         }
 
         else {
-            PossibleAnswers possibleAnswers = questionService.findPossibleAnswersByQuestionId(exam.getQuestionList().get(givenAnswerCounter).getId());
+            PossibleAnswers possibleAnswers = possibleAnswersService.findPossibleAnswersByQuestionId(exam.getQuestionList().get(givenAnswerCounter).getId());
             Question question = exam.getQuestionList().get(givenAnswerCounter);
             exam.setCurrentQuestion(question);
-//            exam.setCurrentPossibleAnswers(possibleAnswers);
+            exam.setCurrentPossibleAnswers(possibleAnswers);
             exam.setGivenAnswerCounter(givenAnswerCounter + 1);
             return "exam";
         }

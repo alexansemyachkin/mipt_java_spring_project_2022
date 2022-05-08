@@ -1,6 +1,8 @@
 package ru.mipt.remotesession.models;
 
 
+import org.springframework.data.util.Lazy;
+
 import javax.persistence.*;
 
 /**
@@ -26,8 +28,9 @@ public class PossibleAnswers {
     /** Field fourth possible answer */
     private String possibleAnswer4;
 
+
     /** Field question with relation many-to-one */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     private Question question;
 
 
@@ -38,21 +41,32 @@ public class PossibleAnswers {
      * @param possibleAnswer3 Question's third possible answer
      * @param possibleAnswer4 Question's fourth possible answer
      */
-    public PossibleAnswers(String possibleAnswer1, String possibleAnswer2, String possibleAnswer3, String possibleAnswer4){
+    public PossibleAnswers(String possibleAnswer1, String possibleAnswer2, String possibleAnswer3, String possibleAnswer4, Question question){
         this.setPossibleAnswer1(possibleAnswer1);
         this.setPossibleAnswer2(possibleAnswer2);
         this.setPossibleAnswer3(possibleAnswer3);
         this.setPossibleAnswer4(possibleAnswer4);
-
-
+        this.setQuestion(question);
     }
 
     /**
      * PossibleAnswers default constructor
      */
     public PossibleAnswers() {
+        this.setPossibleAnswer1("");
+        this.setPossibleAnswer2("");
+        this.setPossibleAnswer3("");
+        this.setPossibleAnswer4("");
     }
 
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
 
     /**
      * PossibleAnswers's possibleAnswer1 getter method

@@ -22,7 +22,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     public Question save(QuestionDTO questionDTO){
         Question question = new Question(questionDTO.getQuestionToAnswer(), questionDTO.getRightAnswerIndex(),
-                questionDTO.getSubject(), questionDTO.getPossibleAnswersList());
+                questionDTO.getSubject(), questionDTO.getPossibleAnswers());
         return questionRepo.save(question);
     }
 
@@ -37,10 +37,6 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepo.findQuestionsBySubjectId(id);
     }
 
-    @Override
-    public PossibleAnswers findPossibleAnswersByQuestionId(int id) {
-        return possibleAnswersRepo.findPossibleAnswersByQuestionId(id);
-    }
 
     @Override
     public List<Question> findAll() {

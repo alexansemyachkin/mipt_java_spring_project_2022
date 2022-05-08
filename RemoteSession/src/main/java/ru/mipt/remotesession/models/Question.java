@@ -28,8 +28,8 @@ public class Question {
 
 
     /** Field possibleAnswers with relation one-to-many */
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PossibleAnswers> possibleAnswers;
+    @OneToOne(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    private PossibleAnswers possibleAnswers;
 
 
     /**
@@ -38,18 +38,21 @@ public class Question {
      * @param rightAnswerIndex Question's right answer index
      */
     public Question(String questionToAnswer, int rightAnswerIndex, Subject subject,
-                    List<PossibleAnswers> possibleAnswers){
+                    PossibleAnswers possibleAnswers){
         this.setQuestionToAnswer(questionToAnswer);
         this.setRightAnswerIndex(rightAnswerIndex);
+        this.setPossibleAnswers(possibleAnswers);
+        this.setSubject(subject);
     }
 
     /**
      * Question default constructor
      */
     public Question() {
+        this.setSubject(new Subject());
         this.setQuestionToAnswer("");
         this.setRightAnswerIndex(0);
-        this.setPossibleAnswers(new ArrayList<>());
+        this.setPossibleAnswers(new PossibleAnswers());
     }
 
     public Subject getSubject() {
@@ -60,11 +63,11 @@ public class Question {
         this.subject = subject;
     }
 
-    public List<PossibleAnswers> getPossibleAnswers() {
+    public PossibleAnswers getPossibleAnswers() {
         return possibleAnswers;
     }
 
-    public void setPossibleAnswers(List<PossibleAnswers> possibleAnswers) {
+    public void setPossibleAnswers(PossibleAnswers possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
     }
 

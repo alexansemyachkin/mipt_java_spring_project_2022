@@ -9,7 +9,6 @@ import java.util.List;
 public interface QuestionService {
     public Question findQuestionById(int id);
     public List<Question> findQuestionBySubjectId(int id);
-    public PossibleAnswers findPossibleAnswersByQuestionId(int id);
     public List<Question> findAll();
     public boolean compareAnswers(int questionId, int answer);
 }

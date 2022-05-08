@@ -13,7 +13,7 @@ public class Exam {
     private List<Question> questionList;
     private int currentAnswer;
     private Question currentQuestion;
-//    private PossibleAnswers currentPossibleAnswers;
+    private PossibleAnswers currentPossibleAnswers;
 
     public Question getCurrentQuestion() {
         return currentQuestion;
@@ -23,13 +23,13 @@ public class Exam {
         this.currentQuestion = currentQuestion;
     }
 
-//    public PossibleAnswers getCurrentPossibleAnswers() {
-//        return currentPossibleAnswers;
-//    }
-//
-//    public void setCurrentPossibleAnswers(PossibleAnswers currentPossibleAnswers) {
-//        this.currentPossibleAnswers = currentPossibleAnswers;
-//    }
+    public PossibleAnswers getCurrentPossibleAnswers() {
+        return currentPossibleAnswers;
+    }
+
+    public void setCurrentPossibleAnswers(PossibleAnswers currentPossibleAnswers) {
+        this.currentPossibleAnswers = currentPossibleAnswers;
+    }
 
     public int getCurrentAnswer() {
         return currentAnswer;

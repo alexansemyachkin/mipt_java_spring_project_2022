@@ -6,31 +6,26 @@
 </head>
 <body>
 <h1>Registration</h1>
-<form th:action="@{/addQuestion}" method="post" th:object="${question}">
-    <div>
-        <select th:each="subject : ${subjectList}" th:field="*{subject}">
-            <option th:value="${subject}" th:text="${subject}"></option>
-        </select>
-    </div>
+<form th:action="@{addQuestion}" method="post" th:object="${question}">
     <div>
         <la>Формулировка вопроса</la>
         <input type ="text" th:field="*{questionToAnswer}">
     </div>
     <div>
         <la>Первый вариант ответа</la>
-        <input type="text" th:field="*{possibleAnswers[0]}">
+        <input type="text" th:field="*{possibleAnswers.possibleAnswer1}">
     </div>
     <div>
         <la>Второй вариант ответа</la>
-        <input type = "text" th:field="*{possibleAnswers[1]}">
+        <input type = "text" th:field="*{possibleAnswers.possibleAnswer2}">
     </div>
     <div>
         <la>Третий вариант ответа</la>
-        <input type = "text" th:field="*{possibleAnswers[2]}">
+        <input type = "text" th:field="*{possibleAnswers.possibleAnswer3}">
     </div>
     <div>
         <la>Четвертый вариант ответа</la>
-        <input type = "text" th:field="*{possibleAnswers[3]}">
+        <input type = "text" th:field="*{possibleAnswers.possibleAnswer4}">
     </div>
     <p>Введите верный вариант ответа</p>
     <div>
@@ -54,6 +49,6 @@
         <button type="reset" class="btn-success">Сбросить</button>
     </div>
 </form>
-
 </body>
 </html>
+<!--th:field="*{subject}"-->

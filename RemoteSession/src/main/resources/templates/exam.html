@@ -10,22 +10,22 @@
   <p th:text="${exam.currentQuestion.questionToAnswer}"></p>
   <div>
     <input type="radio" id="firstAnswer" name="answer" th:field="*{currentAnswer}" th:value="1">
-    <label for="firstAnswer" th:text="${exam.currentQuestion.possibleAnswers[0]}"></label>
+    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer1}"></label>
   </div>
   <br>
   <div>
     <input type="radio" id="secondAnswer" name="answer" th:field="*{currentAnswer}" th:value="2">
-    <label for="firstAnswer" th:text="${exam.currentQuestion.possibleAnswers[1]}"></label>
+    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer2}"></label>
   </div>
   <br>
   <div>
     <input type="radio" id="thirdAnswer" name="answer" th:field="*{currentAnswer}" th:value="3">
-    <label for="firstAnswer" th:text="${exam.currentQuestion.possibleAnswers[2]}"></label>
+    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer3}"></label>
   </div>
   <br>
   <div>
     <input type="radio" id="fourthAnswer" name="answer" th:field="*{currentAnswer}" th:value="4">
-    <label for="firstAnswer" th:text="${exam.currentQuestion.possibleAnswers[3]}"></label>
+    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer4}"></label>
   </div>
   <div>
     <button type="submit" class="btn-success">Отправить</button>

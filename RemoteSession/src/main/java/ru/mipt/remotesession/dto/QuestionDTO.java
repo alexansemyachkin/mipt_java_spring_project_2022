@@ -11,25 +11,24 @@ public class QuestionDTO {
     private String questionToAnswer;
     private int rightAnswerIndex;
     private Subject subject;
-    private List<PossibleAnswers> possibleAnswersList;
+    private PossibleAnswers possibleAnswers;
 
-    public QuestionDTO(){
-    }
+    public QuestionDTO(){}
 
     public QuestionDTO(int id, String questionToAnswer, int rightAnswerIndex,
-                       Subject subject, List<Question> questionList) {
+                       Subject subject, PossibleAnswers possibleAnswers) {
         this.setId(id);
         this.setQuestionToAnswer(questionToAnswer);
         this.setRightAnswerIndex(rightAnswerIndex);
-        this.setPossibleAnswersList(possibleAnswersList);
+        this.setPossibleAnswers(possibleAnswers);
         this.setSubject(subject);
     }
 
     public QuestionDTO(String questionToAnswer, int rightAnswerIndex,
-                       Subject subject, List<PossibleAnswers> possibleAnswersList) {
+                       Subject subject, PossibleAnswers possibleAnswers) {
         this.setQuestionToAnswer(questionToAnswer);
         this.setRightAnswerIndex(rightAnswerIndex);
-        this.setPossibleAnswersList(possibleAnswersList);
+        this.setPossibleAnswers(possibleAnswers);
         this.setSubject(subject);
     }
 
@@ -66,11 +65,11 @@ public class QuestionDTO {
         this.subject = subject;
     }
 
-    public List<PossibleAnswers> getPossibleAnswersList() {
-        return possibleAnswersList;
+    public PossibleAnswers getPossibleAnswers() {
+        return possibleAnswers;
     }
 
-    public void setPossibleAnswersList(List<PossibleAnswers> possibleAnswersList) {
-        this.possibleAnswersList = possibleAnswersList;
+    public void setPossibleAnswers(PossibleAnswers possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
     }
 }

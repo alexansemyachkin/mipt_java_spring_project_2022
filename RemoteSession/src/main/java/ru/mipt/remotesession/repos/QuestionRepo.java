@@ -14,4 +14,5 @@ public interface QuestionRepo extends CrudRepository<Question, Integer> {
     public List<Question> findQuestionsBySubjectId(int id);
     public Question findQuestionById(int id);
     public List<Question> findAll();
+    public Question findByQuestionToAnswer(String questionToAnswer);
 }
