@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subjects to Pass</title>
+</head>
+<body>
+<div th:each="subject : ${subjects}">
+    <a th:href=" 'subjects/subject' + ${subject.id} + '/exam'" th:text="${subject.name}"></a>
+</div>
+</body>
+</html>

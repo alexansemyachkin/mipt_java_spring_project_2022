@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Экзамен завершен</title>
+</head>
+<body>
+<form th:action="@{completed}" method="post">
+    <p>Поздравляем, экзамен завершен!</p>
+    <p th:text=" 'Количество верных ответов : ' + ${exam.rightAnswerCounter}"></p>
+    <div>
+    <button type="submit" class="btn-success">Завершить тест</button>
+</div>
+</form>
+</body>
+</html>

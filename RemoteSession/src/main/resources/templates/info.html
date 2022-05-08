@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="Информация"></title>
+</head>
+<body>
+<a th:text=" 'ФИО : ' + ${user.name}"></a>
+<br>
+<a th:text=" 'Почта : ' + ${user.email}"></a>
+<br>
+<a th:text=" 'Группа : ' + ${user.groupNumber}"></a>
+<br>
+<a th:text=" 'Всего пройдено экзаменов : ' + ${user.passedExamsAmount}"></a>
+<br>
+<a th:text=" 'Средний балл : ' + ${user.averageMark}"></a>
+
+</body>
+</html>

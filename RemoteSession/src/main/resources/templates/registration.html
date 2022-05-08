@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<h1>Registration</h1>
+<form th:action="@{/registration}" method="post" th:object="${user}">
+    <div>
+        <la>Full Name</la>
+        <input name="name" type ="text">
+    </div>
+    <div>
+        <la>Email</la>
+        <input name="email" type="text">
+    </div>
+    <div>
+        <la>Group Number</la>
+        <input name="groupNumber" type = "text">
+    </div>
+    <div>
+        <la>Password</la>
+        <input name="password" type = "text">
+    </div>
+    <div>
+        <button type="submit" class="btn-success">Sign Up</button>
+        <button type="reset" class="btn-success">Reset</button>
+    </div>
+</form>
+
+</body>
+</html>

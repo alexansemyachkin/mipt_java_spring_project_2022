@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new subject</title>
+</head>
+<body>
+<h1>Adding new subject</h1>
+<form th:action="@{addSubject}" method="post" th:object="${subject}">
+    <div>
+        <la>Subject Name</la>
+        <input name="name" type ="text" th:field="*{name}">
+    </div>
+    <div>
+        <button type="submit" class="btn-success">Добавить</button>
+        <button type="reset" class="btn-success">Сбросить</button>
+    </div>
+</form>
+</body>
+</html>
