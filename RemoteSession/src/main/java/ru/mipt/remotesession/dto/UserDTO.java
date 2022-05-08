@@ -2,6 +2,7 @@ package ru.mipt.remotesession.dto;
 
 import ru.mipt.remotesession.models.Role;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 
 /**
@@ -18,6 +19,7 @@ public class UserDTO {
     private String password;
     private int passedExamsAmount;
     private int passedExamsMarksSum;
+    private BigDecimal averageMark;
     private Collection<Role> roles;
 
     public Collection<Role> getRoles() {
@@ -43,7 +45,7 @@ public class UserDTO {
      * @param groupNumber User's group number
      * @param password User's password
      */
-    public UserDTO(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, Collection<Role> roles) {
+    public UserDTO(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, Collection<Role> roles, BigDecimal averageMark) {
         this.setId(id);
         this.setName(name);
         this.setEmail(email);
@@ -52,9 +54,17 @@ public class UserDTO {
         this.setPassedExamsAmount(passedExamsAmount);
         this.setPassedExamsMarksSum(passedExamsMarksSum);
         this.setRoles(roles);
+        this.setAverageMark(averageMark);
     }
 
 
+    public BigDecimal getAverageMark() {
+        return averageMark;
+    }
+
+    public void setAverageMark(BigDecimal averageMark) {
+        this.averageMark = averageMark;
+    }
 
     public int getId() {
         return id;

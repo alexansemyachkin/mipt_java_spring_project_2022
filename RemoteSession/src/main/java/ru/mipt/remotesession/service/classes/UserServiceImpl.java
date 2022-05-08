@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(UserDTO userDTO) {
         User user = new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail(),
-                userDTO.getGroupNumber(), passwordEncoder.encode(userDTO.getPassword()), userDTO.getPassedExamsAmount(), userDTO.getPassedExamsMarksSum());
+                userDTO.getGroupNumber(), passwordEncoder.encode(userDTO.getPassword()), userDTO.getPassedExamsAmount(), userDTO.getPassedExamsMarksSum(), userDTO.getAverageMark());
         return userRepo.save(user);
     }
 

@@ -246,7 +246,8 @@ MERGE INTO USER (
                  EMAIL,
                  NAME,
                  PASSED_EXAMS_AMOUNT,
-                 PASSED_EXAMS_MARKS_SUM
+                 PASSED_EXAMS_MARKS_SUM,
+                 AVERAGE_MARK
     )
     VALUES (
                1,
@@ -255,7 +256,8 @@ MERGE INTO USER (
                'test@gmail.com',
                'Зайцев Егор',
                0,
-               0
+               0,
+               0.0
            ),
            (
                2,
@@ -264,7 +266,8 @@ MERGE INTO USER (
                'admin@phystech.edu',
                'admin',
                999,
-               999
+               999,
+               999.0
            );
 MERGE INTO ROLE (
                  ID,

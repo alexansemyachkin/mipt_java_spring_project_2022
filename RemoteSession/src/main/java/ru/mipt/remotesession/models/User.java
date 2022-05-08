@@ -1,7 +1,7 @@
 package ru.mipt.remotesession.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.Collection;
 
 /**
@@ -35,11 +35,13 @@ public class User {
     /** Field passedExamsMarksSum */
     private int passedExamsMarksSum;
 
+    private BigDecimal averageMark;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles;
 
 
-    public User(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum){
+    public User(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, BigDecimal averageMark){
         this.setId(id);
         this.setName(name);
         this.setEmail(email);
@@ -47,6 +49,7 @@ public class User {
         this.setPassword(password);
         this.setPassedExamsAmount(passedExamsAmount);
         this.setPassedExamsMarksSum(passedExamsMarksSum);
+        this.setAverageMark(averageMark);
     }
 
     /**
@@ -73,6 +76,15 @@ public class User {
     public User() {
         this.setPassedExamsAmount(0);
         this.setPassedExamsMarksSum(0);
+    }
+
+
+    public BigDecimal getAverageMark() {
+        return averageMark;
+    }
+
+    public void setAverageMark(BigDecimal averageMark) {
+        this.averageMark = averageMark;
     }
 
     public Collection<Role> getRoles() {

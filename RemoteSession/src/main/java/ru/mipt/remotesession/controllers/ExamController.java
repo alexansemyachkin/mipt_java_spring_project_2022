@@ -1,7 +1,6 @@
 package ru.mipt.remotesession.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.mipt.remotesession.dto.UserDTO;
@@ -13,6 +12,7 @@ import ru.mipt.remotesession.service.classes.QuestionServiceImpl;
 import ru.mipt.remotesession.service.classes.SubjectServiceImpl;
 import ru.mipt.remotesession.service.classes.UserServiceImpl;
 
+import java.math.BigDecimal;
 
 
 /**
@@ -40,7 +40,7 @@ public class ExamController {
     }
 
     private int putMark(int rightAnswerCounter, int givenAnswerCounter) {
-        double percentage = (double) (rightAnswerCounter * 100 / givenAnswerCounter);
+        double percentage = ((double) rightAnswerCounter * 100 / (double) givenAnswerCounter);
         return (int) (percentage / 10);
     }
 
@@ -83,7 +83,8 @@ public class ExamController {
         int passedExamMarksSum = user.getPassedExamsMarksSum();
         user.setPassedExamsAmount(passedExamAmount + 1);
         user.setPassedExamsMarksSum(passedExamMarksSum + putMark(exam.getRightAnswerCounter(), exam.getGivenAnswerCounter()));
-        userService.update(new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getGroupNumber(), user.getPassword(), user.getPassedExamsAmount(), user.getPassedExamsMarksSum(), user.getRoles()));
+        user.setAverageMark(BigDecimal.valueOf( (double) user.getPassedExamsMarksSum() / (double) user.getPassedExamsAmount()));
+        userService.update(new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getGroupNumber(), user.getPassword(), user.getPassedExamsAmount(), user.getPassedExamsMarksSum(), user.getRoles(), user.getAverageMark()));
         exam.clean();
         return "redirect:/home";
     }
