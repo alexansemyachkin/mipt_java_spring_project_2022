@@ -2,7 +2,11 @@ package ru.mipt.remotesession.service.classes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.mipt.remotesession.dto.SubjectDTO;
+import ru.mipt.remotesession.dto.UserDTO;
+import ru.mipt.remotesession.models.Role;
 import ru.mipt.remotesession.models.Subject;
+import ru.mipt.remotesession.models.User;
 import ru.mipt.remotesession.repos.SubjectRepo;
 import ru.mipt.remotesession.service.interfaces.SubjectService;
 
@@ -20,6 +24,11 @@ public class SubjectServiceImpl implements SubjectService {
      */
     public List<Subject> findAll(){
         return subjectRepo.findAll();
+    }
+
+    public Subject save(SubjectDTO subjectDTO) {
+        Subject subject = new Subject(subjectDTO.getName());
+        return subjectRepo.save(subject);
     }
 
     @Override

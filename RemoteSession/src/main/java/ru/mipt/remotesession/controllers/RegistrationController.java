@@ -34,11 +34,10 @@ public class RegistrationController {
 
 
     /**
-     * @param model of User
      * @return view of registration
      */
     @GetMapping
-    public String registrationController(Model model) {
+    public String registrationController() {
         return "registration";
     }
 

@@ -2,6 +2,7 @@ package ru.mipt.remotesession.service.classes;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.mipt.remotesession.dto.QuestionDTO;
 import ru.mipt.remotesession.models.PossibleAnswers;
 import ru.mipt.remotesession.models.Question;
 import ru.mipt.remotesession.repos.PossibleAnswersRepo;
@@ -18,6 +19,12 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private PossibleAnswersRepo possibleAnswersRepo;
+
+    public Question save(QuestionDTO questionDTO){
+        Question question = new Question(questionDTO.getQuestionToAnswer(), questionDTO.getRightAnswerIndex(),
+                questionDTO.getSubject(), questionDTO.getPossibleAnswersList());
+        return questionRepo.save(question);
+    }
 
 
     @Override

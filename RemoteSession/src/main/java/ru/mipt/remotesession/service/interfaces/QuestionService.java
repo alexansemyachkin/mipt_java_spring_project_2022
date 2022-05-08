@@ -7,7 +7,6 @@ import ru.mipt.remotesession.repos.QuestionRepo;
 import java.util.List;
 
 public interface QuestionService {
-
     public Question findQuestionById(int id);
     public List<Question> findQuestionBySubjectId(int id);
     public PossibleAnswers findPossibleAnswersByQuestionId(int id);

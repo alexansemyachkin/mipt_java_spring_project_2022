@@ -34,7 +34,8 @@ public class Question {
      * @param questionToAnswer Question's question to be answered
      * @param rightAnswerIndex Question's right answer index
      */
-    public Question(String questionToAnswer, int rightAnswerIndex){
+    public Question(String questionToAnswer, int rightAnswerIndex, Subject subject,
+                    List<PossibleAnswers> possibleAnswers){
         this.setQuestionToAnswer(questionToAnswer);
         this.setRightAnswerIndex(rightAnswerIndex);
     }

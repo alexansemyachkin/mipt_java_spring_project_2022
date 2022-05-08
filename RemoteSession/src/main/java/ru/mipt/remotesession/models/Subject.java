@@ -28,7 +28,10 @@ public class Subject {
      * Subject's default constructor
      */
     public Subject(){
-        this.setQuestionList(new ArrayList<>());
+    }
+
+    public Subject(String name){
+        this.setName(name);
     }
 
     /**
