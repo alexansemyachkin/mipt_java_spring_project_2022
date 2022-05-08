@@ -63,10 +63,12 @@ public class AdminActionsController {
     @PostMapping("/subjects/subject{subjectId}/addQuestion")
     public String addQuestion(@ModelAttribute("question") Question question, @PathVariable int subjectId){
         question.setSubject(subjectService.findSubjectById(subjectId));
-        questionService.save(new QuestionDTO(question.getQuestionToAnswer(), question.getRightAnswerIndex(), question.getSubject(), question.getPossibleAnswers()));
-//        PossibleAnswers possibleAnswers = question.getPossibleAnswers();
-//        possibleAnswersService.save(new PossibleAnswersDTO(possibleAnswers.getPossibleAnswer1(), possibleAnswers.getPossibleAnswer2(),
-//                possibleAnswers.getPossibleAnswer3(), possibleAnswers.getPossibleAnswer4(), question));
+        PossibleAnswers possibleAnswers = question.getPossibleAnswers();
+        question.setPossibleAnswers(null);
+        Question questionToSave =  questionService.save(new QuestionDTO(question.getQuestionToAnswer(), question.getRightAnswerIndex(), question.getSubject(), question.getPossibleAnswers()));
+        possibleAnswersService.save(new PossibleAnswersDTO(possibleAnswers.getPossibleAnswer1(), possibleAnswers.getPossibleAnswer2(),
+                possibleAnswers.getPossibleAnswer3(), possibleAnswers.getPossibleAnswer4(), questionToSave));
+
         return "redirect:/admin/home";
     }
 }

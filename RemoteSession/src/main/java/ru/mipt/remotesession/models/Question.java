@@ -1,6 +1,8 @@
 package ru.mipt.remotesession.models;
 
 
+        import org.springframework.stereotype.Controller;
+
         import javax.persistence.*;
         import java.util.List;
 

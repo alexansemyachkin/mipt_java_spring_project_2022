@@ -31,6 +31,7 @@ public class PossibleAnswers {
 
     /** Field question with relation many-to-one */
     @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     private Question question;
 
 
