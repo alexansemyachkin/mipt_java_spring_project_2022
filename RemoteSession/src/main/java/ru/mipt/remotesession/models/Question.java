@@ -1,35 +1,27 @@
 package ru.mipt.remotesession.models;
 
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+        import javax.persistence.*;
+        import java.util.List;
 
 /**
  * Class Question with fields id, questionToAnswer, rightAnswerIndex
  */
 @Entity
 public class Question {
-    /** Field id */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    /** Field  questionToAnswer */
     private String questionToAnswer;
 
-    /** Field rightAnswerIndex */
     private int rightAnswerIndex;
 
-
-    /** Field subject with relation many-to-one */
     @ManyToOne(fetch = FetchType.LAZY)
     private Subject subject;
 
-
-    /** Field possibleAnswers with relation one-to-many */
-    @OneToOne(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
-    private PossibleAnswers possibleAnswers;
+    @OneToOne(mappedBy = "question", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private PossibleAnswers possibleAnswer;
 
 
     /**
@@ -38,40 +30,19 @@ public class Question {
      * @param rightAnswerIndex Question's right answer index
      */
     public Question(String questionToAnswer, int rightAnswerIndex, Subject subject,
-                    PossibleAnswers possibleAnswers){
+                    PossibleAnswers possibleAnswers) {
         this.setQuestionToAnswer(questionToAnswer);
         this.setRightAnswerIndex(rightAnswerIndex);
         this.setPossibleAnswers(possibleAnswers);
         this.setSubject(subject);
     }
-
     /**
      * Question default constructor
      */
     public Question() {
-        this.setSubject(new Subject());
-        this.setQuestionToAnswer("");
-        this.setRightAnswerIndex(0);
-        this.setPossibleAnswers(new PossibleAnswers());
     }
 
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
-
-    public PossibleAnswers getPossibleAnswers() {
-        return possibleAnswers;
-    }
-
-    public void setPossibleAnswers(PossibleAnswers possibleAnswers) {
-        this.possibleAnswers = possibleAnswers;
-    }
-
-    /**
+    /** Field id */ /**
      * Question's id getter method
      * @return int Question's id
      */
@@ -79,7 +50,7 @@ public class Question {
         return id;
     }
 
-    /**
+    /** Field  questionToAnswer */ /**
      * Question's questionToAnswer getter method
      * @return String questionToAnswer
      */
@@ -95,7 +66,7 @@ public class Question {
         this.questionToAnswer = questionToAnswer;
     }
 
-    /**
+    /** Field rightAnswerIndex */ /**
      * Question's rightAnswerIndex getter method
      * @return int Question's rightAnswerIndex
      */
@@ -111,5 +82,27 @@ public class Question {
         this.rightAnswerIndex = rightAnswerIndex;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /** Field subject with relation many-to-one */
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    /** Field possibleAnswers with relation one-to-many */
+    public PossibleAnswers getPossibleAnswers() {
+        return possibleAnswer;
+    }
+
+    public void setPossibleAnswers(PossibleAnswers possibleAnswer) {
+        this.possibleAnswer = possibleAnswer;
+    }
 }
+
 
