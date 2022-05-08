@@ -2,6 +2,7 @@ package ru.mipt.remotesession.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +21,11 @@ public class Question {
     /** Field rightAnswerIndex */
     private int rightAnswerIndex;
 
+
     /** Field subject with relation many-to-one */
     @ManyToOne(fetch = FetchType.LAZY)
     private Subject subject;
+
 
     /** Field possibleAnswers with relation one-to-many */
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -44,6 +47,25 @@ public class Question {
      * Question default constructor
      */
     public Question() {
+        this.setQuestionToAnswer("");
+        this.setRightAnswerIndex(0);
+        this.setPossibleAnswers(new ArrayList<>());
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public List<PossibleAnswers> getPossibleAnswers() {
+        return possibleAnswers;
+    }
+
+    public void setPossibleAnswers(List<PossibleAnswers> possibleAnswers) {
+        this.possibleAnswers = possibleAnswers;
     }
 
     /**

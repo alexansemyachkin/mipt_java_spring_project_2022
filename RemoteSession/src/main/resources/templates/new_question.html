@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление вопроса</title>
+</head>
+<body>
+<h1>Registration</h1>
+<form th:action="@{/addQuestion}" method="post" th:object="${question}">
+    <div>
+        <select th:each="subject : ${subjectList}" th:field="*{subject}">
+            <option th:value="${subject}" th:text="${subject}"></option>
+        </select>
+    </div>
+    <div>
+        <la>Формулировка вопроса</la>
+        <input type ="text" th:field="*{questionToAnswer}">
+    </div>
+    <div>
+        <la>Первый вариант ответа</la>
+        <input type="text" th:field="*{possibleAnswers[0]}">
+    </div>
+    <div>
+        <la>Второй вариант ответа</la>
+        <input type = "text" th:field="*{possibleAnswers[1]}">
+    </div>
+    <div>
+        <la>Третий вариант ответа</la>
+        <input type = "text" th:field="*{possibleAnswers[2]}">
+    </div>
+    <div>
+        <la>Четвертый вариант ответа</la>
+        <input type = "text" th:field="*{possibleAnswers[3]}">
+    </div>
+    <p>Введите верный вариант ответа</p>
+    <div>
+        <input type="radio" id="firstAnswer" name="answer" th:field="*{rightAnswerIndex}" th:value="1" checked>
+        <label>1</label>
+    </div>
+    <div>
+        <input type="radio" id="secondAnswer" name="answer" th:field="*{rightAnswerIndex}" th:value="2">
+        <label>2</label>
+    </div>
+    <div>
+        <input type="radio" id="thirdAnswer" name="answer" th:field="*{rightAnswerIndex}" th:value="3">
+        <label>3</label>
+    </div>
+    <div>
+        <input type="radio" id="fourthAnswer" name="answer" th:field="*{rightAnswerIndex}" th:value="4">
+        <label>4</label>
+    </div>
+    <div>
+        <button type="submit" class="btn-success">Добавить</button>
+        <button type="reset" class="btn-success">Сбросить</button>
+    </div>
+</form>
+
+</body>
+</html>

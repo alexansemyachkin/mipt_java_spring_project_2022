@@ -25,6 +25,14 @@ public class QuestionDTO {
         this.setSubject(subject);
     }
 
+    public QuestionDTO(String questionToAnswer, int rightAnswerIndex,
+                       Subject subject, List<PossibleAnswers> possibleAnswersList) {
+        this.setQuestionToAnswer(questionToAnswer);
+        this.setRightAnswerIndex(rightAnswerIndex);
+        this.setPossibleAnswersList(possibleAnswersList);
+        this.setSubject(subject);
+    }
+
     public int getId() {
         return id;
     }

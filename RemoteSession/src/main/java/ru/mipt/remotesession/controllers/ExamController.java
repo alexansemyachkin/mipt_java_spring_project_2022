@@ -62,7 +62,7 @@ public class ExamController {
             PossibleAnswers possibleAnswers = questionService.findPossibleAnswersByQuestionId(exam.getQuestionList().get(givenAnswerCounter).getId());
             Question question = exam.getQuestionList().get(givenAnswerCounter);
             exam.setCurrentQuestion(question);
-            exam.setCurrentPossibleAnswers(possibleAnswers);
+//            exam.setCurrentPossibleAnswers(possibleAnswers);
             exam.setGivenAnswerCounter(givenAnswerCounter + 1);
             return "exam";
         }

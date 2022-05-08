@@ -12,6 +12,10 @@ public class SubjectDTO {
         this.setName(name);
     }
 
+    public SubjectDTO(String name) {
+        this.setName(name);
+    }
+
     public int getId() {
         return id;
     }
