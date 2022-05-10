@@ -4,6 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.mipt.remotesession.models.User;
 
+/**
+ * Public interface UserRepo extending CrudRepository
+ */
 @Repository
 public interface UserRepo extends CrudRepository<User, Integer> {
     /**

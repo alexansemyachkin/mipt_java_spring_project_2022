@@ -30,6 +30,10 @@ public class Subject {
     public Subject(){
     }
 
+    /**
+     * Subject's constructor for adding to Database
+     * @param name - String Subject's name
+     */
     public Subject(String name){
         this.setName(name);
     }

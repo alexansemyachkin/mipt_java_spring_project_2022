@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 /**
  * Class PossibleAnswers with fields id, possibleAnswer1, possibleAnswer2,
- * possibleAnswer3, possibleAnswer4
+ * possibleAnswer3, possibleAnswer4, question
  */
 @Entity
 public class PossibleAnswers {
@@ -29,7 +29,7 @@ public class PossibleAnswers {
     private String possibleAnswer4;
 
 
-    /** Field question with relation many-to-one */
+    /** Field question with relation one-to-one */
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Question question;
@@ -61,10 +61,17 @@ public class PossibleAnswers {
     }
 
 
+    /**
+     * Question's getter method
+     * @return Question relates to PossibleAnswers
+     */
     public Question getQuestion() {
         return question;
     }
 
+    /**
+     * @param question - Question relates to PossibleAnswers
+     */
     public void setQuestion(Question question) {
         this.question = question;
     }

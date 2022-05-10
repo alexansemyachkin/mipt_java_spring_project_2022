@@ -16,7 +16,7 @@ import ru.mipt.remotesession.repos.UserRepo;
 import ru.mipt.remotesession.service.interfaces.UserService;
 
 /**
- * WebSecurityConfig Configuration class extends WebSecurityConfigurerAdapter and sets up Spring security
+ * WebSecurityConfig Configuration class extending WebSecurityConfigurerAdapter and sets up Spring security
  */
 @Configuration
 @EnableWebSecurity
@@ -67,7 +67,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * Describes logic of authentication process
-     *
      * @param http
      * @throws Exception
      */

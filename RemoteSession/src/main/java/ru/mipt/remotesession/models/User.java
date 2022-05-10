@@ -6,7 +6,8 @@ import java.util.Collection;
 
 /**
  * Class User with fields id, name, email, groupNumber,
- * password, passedExamsAmount, passedExamsSum
+ * password, passedExamsAmount, passedExamsSum, averageMark,
+ * roles
  */
 @Entity
 public class User {
@@ -35,12 +36,25 @@ public class User {
     /** Field passedExamsMarksSum */
     private int passedExamsMarksSum;
 
+    /** Field averageMark */
     private BigDecimal averageMark;
 
+   /** Field roles with relation many-to-many */
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles;
 
 
+    /**
+     * User object constructor
+     * @param id User's id
+     * @param name User's name
+     * @param email User's email
+     * @param groupNumber User's froupNumber
+     * @param password User's password
+     * @param passedExamsAmount User's passedExamsAmount
+     * @param passedExamsMarksSum User's passedExamsMarksSum
+     * @param averageMark User's averageMark
+     */
     public User(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, BigDecimal averageMark){
         this.setId(id);
         this.setName(name);
@@ -79,18 +93,34 @@ public class User {
     }
 
 
+    /**
+     * User's averageMark getter method
+     * @return BigDecimal averageMark
+     */
     public BigDecimal getAverageMark() {
         return averageMark;
     }
 
+    /**
+     * User's averageMark setter method
+     * @param averageMark - BigDecimal User's averageMark
+     */
     public void setAverageMark(BigDecimal averageMark) {
         this.averageMark = averageMark;
     }
 
+    /**
+     * User's roles getter method
+     * @return Set<Roles> roles
+     */
     public Collection<Role> getRoles() {
         return roles.stream().toList();
     }
 
+    /**
+     * User's roles setter method
+     * @param roles - Set<Roles> User's roles
+     */
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
@@ -103,6 +133,10 @@ public class User {
         return id;
     }
 
+    /**
+     * User's id setter method
+     * @param id - int User's id
+     */
     public void setId(int id) {
         this.id = id;
     }

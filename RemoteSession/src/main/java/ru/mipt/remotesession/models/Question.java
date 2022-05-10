@@ -7,21 +7,26 @@ package ru.mipt.remotesession.models;
         import java.util.List;
 
 /**
- * Class Question with fields id, questionToAnswer, rightAnswerIndex
+ * Class Question with fields id, questionToAnswer, rightAnswerIndex, subject, possibleAnswer
  */
 @Entity
 public class Question {
+    /** Field id */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /** Field questionToAnswer */
     private String questionToAnswer;
 
+    /** Fiels rightAnswerIndex */
     private int rightAnswerIndex;
 
+    /** Field subject with relation many-to-one */
     @ManyToOne(fetch = FetchType.LAZY)
     private Subject subject;
 
+    /** Field possibleAnswer with relation one-to-one */
     @OneToOne(mappedBy = "question", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private PossibleAnswers possibleAnswer;
 
@@ -84,24 +89,42 @@ public class Question {
         this.rightAnswerIndex = rightAnswerIndex;
     }
 
+    /**
+     * Question's id setter method
+     * @param id - int Question's id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
-    /** Field subject with relation many-to-one */
+    /**
+     * Question's subject getter method
+     * @return Question's subject
+     */
     public Subject getSubject() {
         return subject;
     }
 
+    /**
+     * Question's subject setter method
+     * @param subject - Subject Question's subject
+     */
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
 
-    /** Field possibleAnswers with relation one-to-many */
+    /**
+     * Question's possibleAnswers getter method
+     * @return Question's PossibleAnswers
+     */
     public PossibleAnswers getPossibleAnswers() {
         return possibleAnswer;
     }
 
+    /**
+     * Question's possibleAnswers setter method
+     * @param possibleAnswer - PossibleAnswers Question possibleAnswers
+     */
     public void setPossibleAnswers(PossibleAnswers possibleAnswer) {
         this.possibleAnswer = possibleAnswer;
     }
