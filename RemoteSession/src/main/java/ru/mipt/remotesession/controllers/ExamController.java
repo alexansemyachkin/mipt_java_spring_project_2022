@@ -51,7 +51,7 @@ public class ExamController {
     public String welcomeExamPage(@ModelAttribute("exam") Exam exam, @PathVariable int subjectId) {
         exam.setQuestionList(questionService.findQuestionBySubjectId(subjectId));
         exam.setSubject(subjectService.findSubjectById(subjectId));
-        return "welcome_exam";
+        return "redirect:exam/test";
     }
 
     @GetMapping("/test")

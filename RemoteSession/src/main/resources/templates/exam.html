@@ -1,41 +1,40 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title th:text="${exam.subject.name}"></title>
-</head>
-<body>
-<script src="../js/exam.js" type="text/javascript"></script>
-<form th:action="@{test}" method="post" th:object="${exam}">
-  <p th:text="${exam.currentQuestion.questionToAnswer}"></p>
-  <div>
-    <input type="radio" id="firstAnswer" name="answer" th:field="*{currentAnswer}" th:value="1">
-    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer1}"></label>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/html">
+  <head th:insert="parts/head :: head"></head>
+  <body>
+  <header th:insert="parts/header :: header"></header>
+  <div class="container">
+
   </div>
-  <br>
-  <div>
-    <input type="radio" id="secondAnswer" name="answer" th:field="*{currentAnswer}" th:value="2">
-    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer2}"></label>
-  </div>
-  <br>
-  <div>
-    <input type="radio" id="thirdAnswer" name="answer" th:field="*{currentAnswer}" th:value="3">
-    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer3}"></label>
-  </div>
-  <br>
-  <div>
-    <input type="radio" id="fourthAnswer" name="answer" th:field="*{currentAnswer}" th:value="4">
-    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer4}"></label>
-  </div>
-  <div>
-    <button type="submit" class="btn-success">Отправить</button>
-    <button type="reset" class="btn-success">Сбросить</button>
-  </div>
-</form>
-</body>
+  <footer th:insert="parts/footer :: footer"></footer>
+  </body>
 </html>
 
 
 
-
-
+<!--<form th:action="@{test}" method="post" th:object="${exam}">-->
+<!--  <p th:text="${exam.currentQuestion.questionToAnswer}"></p>-->
+<!--  <div>-->
+<!--    <input type="radio" id="firstAnswer" name="answer" th:field="*{currentAnswer}" th:value="1">-->
+<!--    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer1}"></label>-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <div>-->
+<!--    <input type="radio" id="secondAnswer" name="answer" th:field="*{currentAnswer}" th:value="2">-->
+<!--    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer2}"></label>-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <div>-->
+<!--    <input type="radio" id="thirdAnswer" name="answer" th:field="*{currentAnswer}" th:value="3">-->
+<!--    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer3}"></label>-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <div>-->
+<!--    <input type="radio" id="fourthAnswer" name="answer" th:field="*{currentAnswer}" th:value="4">-->
+<!--    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer4}"></label>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button type="submit" class="btn-success">Отправить</button>-->
+<!--    <button type="reset" class="btn-success">Сбросить</button>-->
+<!--  </div>-->
+<!--</form>-->
