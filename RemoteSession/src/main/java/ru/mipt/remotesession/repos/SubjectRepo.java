@@ -10,6 +10,9 @@ import ru.mipt.remotesession.models.Subject;
 import java.util.List;
 
 
+/**
+ * Public interface SubjectRepo extending CrudRepository
+ */
 @Repository
 public interface SubjectRepo extends CrudRepository<Subject, Integer> {
     /**
@@ -17,5 +20,10 @@ public interface SubjectRepo extends CrudRepository<Subject, Integer> {
      * @return Iterable of Subject elements
      */
     public List<Subject> findAll();
+
+    /**
+     * @param id int Subject's id
+     * @return Subject with necessary id
+     */
     public Subject findSubjectById(int id);
 }

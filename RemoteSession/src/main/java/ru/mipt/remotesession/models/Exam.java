@@ -4,8 +4,11 @@ package ru.mipt.remotesession.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class Exam with fields givenAnswerCounter, rightAnswerCounter, subject,
+ * questionList, currentAnswer, currentQuestion, currentPossibleAnswers
+ */
 public class Exam {
-
 
     private int givenAnswerCounter;
     private int rightAnswerCounter;
