@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Экзамен завершен</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/html">
+<head th:insert="parts/head :: head"></head>
 <body>
-<form th:action="@{completed}" method="post">
-    <p>Поздравляем, экзамен завершен!</p>
-    <p th:text=" 'Количество верных ответов : ' + ${exam.rightAnswerCounter}"></p>
-    <div>
-    <button type="submit" class="btn-success">Завершить тест</button>
+<header th:insert="parts/header :: header"></header>
+<div class="container">
+    <form th:action="@{completed}" method="post">
+        <div class="card border border-primary rounded-3 position-relative col-md-5 shadow p-3 mb-5 bg-body rounded" style="margin-top: 7%;margin-left: 31.5%;">
+            <div class="card-head text-center rounded-3 bg-primary d-grid  col-6 mx-auto text-white">
+                <h6 th:text="${exam.subject.name}"></h6>
+            </div>
+            <hr class="bg-primary">
+            <div class="card-body">
+                <h5 class="card-title text-center" th:text=" 'Тестирование завершено, поздравляем! Количество верных ответов : ' + ${exam.rightAnswerCounter} + '. Нажмите на кнопку ниже, чтобы перейти на домашнюю страницу' "></h5>
+            </div>
+            <hr class="bg-primary">
+            <div class="d-grid  col-6 mx-auto">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </div>
+        </div>
+    </form>
 </div>
-</form>
+<footer th:insert="parts/footer :: footer"></footer>
 </body>
 </html>

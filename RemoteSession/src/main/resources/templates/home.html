@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"  xmlns="http://www.w3.org/1999/html">
     <head th:insert="parts/head :: head"></head>
     <body>
-        <header th:insert="parts/header :: header"></header>
+        <header th:insert="parts/another_header :: another_header"></header>
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-10 mt-5 pt-5">
@@ -103,34 +103,3 @@
         <footer th:insert="parts/footer :: footer"></footer>
     </body>
 </html>
-
-
-<!--test@gmail.com-->
-
-<!--<p>Меню</p>-->
-<!--<a href="/profile">Посмотреть профиль</a>-->
-<!--<br>-->
-<!--<a href="/home/subjects">Сдать экзамен</a>-->
-<!--<br>-->
-<!--<a href="/logout">Выйти</a>-->
-
-
-<!--<h3 class="mt-3 text-center">Pass the exam</h3>-->
-<!--<div class="accordion" id="accordionExample">-->
-<!--    <div class="accordion-item">-->
-<!--        <h2 class="accordion-header" id="headingOne">-->
-<!--            <button class="accordion-button t" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">-->
-<!--                Exam rools-->
-<!--            </button>-->
-<!--        </h2>-->
-<!--        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">-->
-<!--            <div class="accordion-body">-->
-<!--                Экзамен проходит в формате теста и состоит из нескольких вопросов. Обратите внимание, что возвращаться к вопросам нельзя. Время тестирования не ограничено. Для начала экзамена выберите предмет, нажав соответствующую кнопку.-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<p>Перед началом экзамена прочитайте правила</p>-->
-<!--<div class="btn-group" role="group" aria-label="Basic example" th:each="subject : ${subjectList}">-->
-<!--    <button type="button" class="btn btn-primary rounded-pill" th:text="${subject.name}"></button>-->
-<!--</div>-->

@@ -4,37 +4,44 @@
   <body>
   <header th:insert="parts/header :: header"></header>
   <div class="container">
-
+    <div class="card border border-primary rounded-3 position-relative col-md-4 shadow p-3 mb-5 bg-body rounded" style="margin-top: 7%;margin-left: 33.5%;">
+      <div class="card-head text-center rounded-3 bg-primary d-grid  col-6 mx-auto text-white">
+        <h6  th:text="${exam.subject.name}"></h6>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title text-center" th:text="${exam.currentQuestion.questionToAnswer}"></h5>
+        <hr class="bg-primary">
+        <form th:action="@{test}" method="post" th:object="${exam}">
+          <div class="mb-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" th:field="*{currentAnswer}" th:value="1">
+              <label class="form-check-label" for="flexRadioDefault1" th:text="${exam.currentPossibleAnswers.possibleAnswer1}"></label>
+            </div>
+            <hr class="bg-primary">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" th:field="*{currentAnswer}" th:value="2">
+              <label class="form-check-label" for="flexRadioDefault2" th:text="${exam.currentPossibleAnswers.possibleAnswer2}"></label>
+            </div>
+            <hr class="bg-primary">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" th:field="*{currentAnswer}" th:value="3">
+              <label class="form-check-label" for="flexRadioDefault3" th:text="${exam.currentPossibleAnswers.possibleAnswer3}"></label>
+            </div>
+            <hr class="bg-primary">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" th:field="*{currentAnswer}" th:value="4">
+              <label class="form-check-label" for="flexRadioDefault4" th:text="${exam.currentPossibleAnswers.possibleAnswer4}"></label>
+            </div>
+            <hr class="bg-primary">
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
   <footer th:insert="parts/footer :: footer"></footer>
   </body>
 </html>
-
-
-
-<!--<form th:action="@{test}" method="post" th:object="${exam}">-->
-<!--  <p th:text="${exam.currentQuestion.questionToAnswer}"></p>-->
-<!--  <div>-->
-<!--    <input type="radio" id="firstAnswer" name="answer" th:field="*{currentAnswer}" th:value="1">-->
-<!--    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer1}"></label>-->
-<!--  </div>-->
-<!--  <br>-->
-<!--  <div>-->
-<!--    <input type="radio" id="secondAnswer" name="answer" th:field="*{currentAnswer}" th:value="2">-->
-<!--    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer2}"></label>-->
-<!--  </div>-->
-<!--  <br>-->
-<!--  <div>-->
-<!--    <input type="radio" id="thirdAnswer" name="answer" th:field="*{currentAnswer}" th:value="3">-->
-<!--    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer3}"></label>-->
-<!--  </div>-->
-<!--  <br>-->
-<!--  <div>-->
-<!--    <input type="radio" id="fourthAnswer" name="answer" th:field="*{currentAnswer}" th:value="4">-->
-<!--    <label for="firstAnswer" th:text="${exam.currentPossibleAnswers.possibleAnswer4}"></label>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <button type="submit" class="btn-success">Отправить</button>-->
-<!--    <button type="reset" class="btn-success">Сбросить</button>-->
-<!--  </div>-->
-<!--</form>-->
+<!--test@gmail.com-->
