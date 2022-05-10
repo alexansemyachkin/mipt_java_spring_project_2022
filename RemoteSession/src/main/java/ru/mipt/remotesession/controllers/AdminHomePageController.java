@@ -8,9 +8,6 @@ import ru.mipt.remotesession.dto.*;
 
 @Controller
 public class AdminHomePageController {
-
-
-
     @GetMapping("admin/home")
     public String adminHomePage(){
         return "admin_home";
