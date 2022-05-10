@@ -18,10 +18,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+/**
+ * UserServiceImpl implementing UserService
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
-    /** Field User Reporitory */
+    /** Field userRepo */
     private final UserRepo userRepo;
 
 
@@ -31,14 +34,18 @@ public class UserServiceImpl implements UserService {
 
     /**
      * UserServiceImpl constructor
-     * @param userRepo subjectRepo class Storing data from Data Base
+     * @param userRepo UserRepo class Storing data from Data Base
      */
     public UserServiceImpl(UserRepo userRepo) {
         this.userRepo = userRepo;
     }
 
 
-
+    /**
+     * Updates existing user record in database
+     * @param userDTO class transferring data to database
+     * @return User object
+     */
     @Override
     public User update(UserDTO userDTO) {
         User user = new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail(),
@@ -47,7 +54,8 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * @param userDTO class transferring data to Data Base
+     * Saves new user to database
+     * @param userDTO class transferring data to database
      * @return User object
      */
     @Override
@@ -58,6 +66,10 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    /**
+     * @param email User's email
+     * @return User object
+     */
     @Override
     public User findByEmail(String email) {
         return userRepo.findByEmail(email);
@@ -77,6 +89,11 @@ public class UserServiceImpl implements UserService {
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
+
+    /**
+     * @param roles User's roles
+     * @return collection of GrantedAuthority objects
+     */
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }

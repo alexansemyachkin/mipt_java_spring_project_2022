@@ -23,20 +23,27 @@ import java.util.List;
 @SessionAttributes("user")
 public class HomePageController {
 
-
+    /** Field userService */
     @Autowired
     private UserServiceImpl userService;
 
+    /** Fiels subjectService */
     @Autowired
     private SubjectServiceImpl subjectService;
 
+    /**
+     * @return User object
+     */
     @ModelAttribute("user")
     public User user() {
         return userService.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
+
     /**
-     * @return view of homepage
+     * @param user User model
+     * @param model Subject model
+     * @return view of the home page
      */
     @GetMapping("/home")
     public String homePage(@ModelAttribute("user") User user, Model model){

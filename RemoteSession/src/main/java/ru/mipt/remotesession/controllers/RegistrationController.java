@@ -34,7 +34,7 @@ public class RegistrationController {
 
 
     /**
-     * @return view of registration
+     * @return view of registration page
      */
     @GetMapping
     public String registrationController() {
@@ -42,7 +42,7 @@ public class RegistrationController {
     }
 
     /**
-     * Saves newely registered user
+     * Saves newly registered user
      * @param userDTO
      * @return view of start page
      */

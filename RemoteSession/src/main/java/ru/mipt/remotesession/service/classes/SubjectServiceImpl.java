@@ -12,9 +12,13 @@ import ru.mipt.remotesession.service.interfaces.SubjectService;
 
 import java.util.List;
 
+/**
+ * SubjectServiceImpl implementing SubjectService
+ */
 @Service
 public class SubjectServiceImpl implements SubjectService {
 
+    /** Field subjectRepo */
     @Autowired
     private SubjectRepo subjectRepo;
 
@@ -26,11 +30,20 @@ public class SubjectServiceImpl implements SubjectService {
         return subjectRepo.findAll();
     }
 
+    /**
+     * Saves new Subject to database
+     * @param subjectDTO class transferring data to database
+     * @returnSubject object
+     */
     public Subject save(SubjectDTO subjectDTO) {
         Subject subject = new Subject(subjectDTO.getName());
         return subjectRepo.save(subject);
     }
 
+    /**
+     * @param id Subject's id
+     * @returnSubject object
+     */
     @Override
     public Subject findSubjectById(int id) {
         return subjectRepo.findSubjectById(id);
