@@ -72,5 +72,3 @@ public class AdminActionsController {
         return "redirect:/admin/home";
     }
 }
-//admin@phystech.edu
-//password

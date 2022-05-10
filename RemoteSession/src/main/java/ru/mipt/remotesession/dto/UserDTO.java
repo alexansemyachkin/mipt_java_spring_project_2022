@@ -2,41 +2,46 @@ package ru.mipt.remotesession.dto;
 
 import ru.mipt.remotesession.models.Role;
 
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Set;
 
 /**
- * UserDTO class transferring data to Data Base with fields
+ * UserDTO class transferring data to Data Base with fields id, name, email, groupNumber,
+ *  * password, passedExamsAmount, passedExamsSum, averageMark,
+ *  * roles
  */
 public class UserDTO {
 
 
 
     private int id;
+
+    /** Field name */
     private String name;
+
+    /** Field email */
     private String email;
+
+    /** Field groupNumber */
     private int groupNumber;
+
+    /** Field password */
     private String password;
+
+    /** Field passedExamsAmount */
     private int passedExamsAmount;
+
+    /** Field passedExamsMarksSum */
     private int passedExamsMarksSum;
+
+    /** Field averageMark */
     private BigDecimal averageMark;
-    private Collection<Role> roles;
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
-
-    /**
-     * UserDTO default constructor
-     */
-    public UserDTO() {
-        this.setPassedExamsAmount(0);
-        this.setPassedExamsMarksSum(0);
-    }
+    /** Field roles with relation many-to-many */
+    private Set<Role> roles;
 
     /**
      * UserDTO object constructor
@@ -44,8 +49,10 @@ public class UserDTO {
      * @param email User's email
      * @param groupNumber User's group number
      * @param password User's password
+     * @param roles User's roles
+     * @param averageMark User's averageMark
      */
-    public UserDTO(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, Collection<Role> roles, BigDecimal averageMark) {
+    public UserDTO(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, Set<Role> roles, BigDecimal averageMark) {
         this.setId(id);
         this.setName(name);
         this.setEmail(email);
@@ -57,19 +64,58 @@ public class UserDTO {
         this.setAverageMark(averageMark);
     }
 
+    /**
+     * UserDTO default constructor
+     */
+    public UserDTO() {
+        this.setPassedExamsAmount(0);
+        this.setPassedExamsMarksSum(0);
+    }
 
+    /**
+     * UserDTO's roles getter method
+     * @return Set<Roles> roles
+     */
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    /**
+     * UserDTO's roles setter method
+     * @param roles - Set<Roles> User's roles
+     */
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    /**
+     * User'DTOs averageMark getter method
+     * @return BigDecimal averageMark
+     */
     public BigDecimal getAverageMark() {
         return averageMark;
     }
 
+    /**
+     * UserDTO's averageMark setter method
+     * @param averageMark - BigDecimal User's averageMark
+     */
     public void setAverageMark(BigDecimal averageMark) {
         this.averageMark = averageMark;
     }
 
+    /**
+     * UserDTO's id getter method
+     * @return int id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * UserDTO's id setter method
+     * @param id - int User's id
+     */
     public void setId(int id) {
         this.id = id;
     }

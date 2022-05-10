@@ -36,11 +36,12 @@ public class PossibleAnswers {
 
 
     /**
-     * PossibleAnswers object constructor
-     * @param possibleAnswer1 Question's first possible answer
-     * @param possibleAnswer2 Question's second possible answer
-     * @param possibleAnswer3 Question's third possible answer
-     * @param possibleAnswer4 Question's fourth possible answer
+     * PossibleAnswersDTO object constructor
+     * @param possibleAnswer1 PossibleAnswers's first possible answer
+     * @param possibleAnswer2 PossibleAnswers's second possible answer
+     * @param possibleAnswer3 PossibleAnswers's third possible answer
+     * @param possibleAnswer4 PossibleAnswers's fourth possible answer
+     * @param question PossibleAnswers's question
      */
     public PossibleAnswers(String possibleAnswer1, String possibleAnswer2, String possibleAnswer3, String possibleAnswer4, Question question){
         this.setPossibleAnswer1(possibleAnswer1);

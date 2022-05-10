@@ -35,6 +35,8 @@ public class Question {
      * Question Object constructor
      * @param questionToAnswer Question's question to be answered
      * @param rightAnswerIndex Question's right answer index
+     * @param subject Question's subject
+     * @param possibleAnswers Question's possibleAnswers
      */
     public Question(String questionToAnswer, int rightAnswerIndex, Subject subject,
                     PossibleAnswers possibleAnswers) {
