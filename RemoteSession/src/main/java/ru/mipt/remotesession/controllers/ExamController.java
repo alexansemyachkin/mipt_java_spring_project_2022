@@ -115,7 +115,7 @@ public class ExamController {
         user.setPassedExamsAmount(passedExamAmount + 1);
         user.setPassedExamsMarksSum(passedExamMarksSum + putMark(exam.getRightAnswerCounter(), exam.getGivenAnswerCounter()));
         user.setAverageMark(BigDecimal.valueOf( (double) user.getPassedExamsMarksSum() / (double) user.getPassedExamsAmount()));
-        userService.update(new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getGroupNumber(), user.getPassword(), user.getPassedExamsAmount(), user.getPassedExamsMarksSum(), (Set<Role>) user.getRoles(), user.getAverageMark()));
+        userService.update(new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getGroupNumber(), user.getPassword(), user.getPassedExamsAmount(), user.getPassedExamsMarksSum(), user.getRoles(), user.getAverageMark()));
         exam.clean();
         return "redirect:/home";
     }

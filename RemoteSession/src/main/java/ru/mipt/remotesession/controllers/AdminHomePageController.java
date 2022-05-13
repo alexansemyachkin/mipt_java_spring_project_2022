@@ -67,6 +67,12 @@ public class AdminHomePageController {
         return "redirect:/admin/home";
     }
 
+    /**
+     * saves question to database
+     * @param question Question to answer
+     * @param subject Subject related to Question
+     * @return redirects to admin home page
+     */
     @PostMapping("admin/home/addQuestion")
     public String addQuestion(@ModelAttribute("question") Question question, @ModelAttribute("subject") Subject subject){
         question.setSubject(subjectService.findSubjectByName(subject.getName()));

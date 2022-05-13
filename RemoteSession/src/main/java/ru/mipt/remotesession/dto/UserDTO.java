@@ -39,7 +39,7 @@ public class UserDTO {
     private BigDecimal averageMark;
 
     /** Field roles with relation many-to-many */
-    private Set<Role> roles;
+    private Collection<Role> roles;
 
     /**
      * UserDTO object constructor
@@ -50,7 +50,7 @@ public class UserDTO {
      * @param roles User's roles
      * @param averageMark User's averageMark
      */
-    public UserDTO(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, Set<Role> roles, BigDecimal averageMark) {
+    public UserDTO(int id, String name, String email, int groupNumber, String password, int passedExamsAmount, int passedExamsMarksSum, Collection<Role> roles, BigDecimal averageMark) {
         this.setId(id);
         this.setName(name);
         this.setEmail(email);
@@ -74,7 +74,7 @@ public class UserDTO {
      * UserDTO's roles getter method
      * @return Set<Roles> roles
      */
-    public Set<Role> getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
 
@@ -82,7 +82,7 @@ public class UserDTO {
      * UserDTO's roles setter method
      * @param roles - Set<Roles> User's roles
      */
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
 

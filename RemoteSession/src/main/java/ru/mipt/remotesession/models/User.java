@@ -119,7 +119,7 @@ public class User {
 
     /**
      * User's roles setter method
-     * @param roles - Set<Roles> User's roles
+     * @param roles - List<Roles> User's roles
      */
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
