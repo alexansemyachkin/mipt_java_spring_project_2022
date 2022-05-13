@@ -48,4 +48,9 @@ public class SubjectServiceImpl implements SubjectService {
     public Subject findSubjectById(int id) {
         return subjectRepo.findSubjectById(id);
     }
+
+    @Override
+    public Subject findSubjectByName(String name) {
+        return subjectRepo.findSubjectByName(name);
+    }
 }

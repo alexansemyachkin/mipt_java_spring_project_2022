@@ -22,4 +22,6 @@ public interface SubjectService {
      * @see SubjectServiceImpl#findSubjectById(int)
      */
     Subject findSubjectById(int id);
+
+    Subject findSubjectByName(String name);
 }

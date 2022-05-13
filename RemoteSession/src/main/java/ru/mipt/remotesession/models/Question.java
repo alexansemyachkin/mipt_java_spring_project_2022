@@ -1,6 +1,7 @@
 package ru.mipt.remotesession.models;
 
 
+        import org.hibernate.annotations.Cascade;
         import org.springframework.stereotype.Controller;
 
         import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Question {
 
     /** Field subject with relation many-to-one */
     @ManyToOne(fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Subject subject;
 
     /** Field possibleAnswer with relation one-to-one */
@@ -48,8 +50,7 @@ public class Question {
     /**
      * Question default constructor
      */
-    public Question() {
-    }
+    public Question() {}
 
     /** Field id */ /**
      * Question's id getter method

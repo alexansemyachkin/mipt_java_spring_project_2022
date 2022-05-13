@@ -19,11 +19,14 @@ public interface SubjectRepo extends CrudRepository<Subject, Integer> {
      * Provides Iterable of all Subject elements from Data Base
      * @return Iterable of Subject elements
      */
-    public List<Subject> findAll();
+    List<Subject> findAll();
 
     /**
      * @param id int Subject's id
      * @return Subject with necessary id
      */
-    public Subject findSubjectById(int id);
+    Subject findSubjectById(int id);
+
+    Subject findSubjectByName(String name);
+
 }
