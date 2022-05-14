@@ -37,6 +37,8 @@
     4. $ cd mipt_java_spring_project_2022/RemoteSession/
     5. $ mvn compile
     6. $ mvn spring-boot:run
+    7. Открыть браузер и ввести в строку поиска localhost:4040
+    8. Наслаждаться :)
  
 
 Инструкции по установке необходимого программного обеспечения:
