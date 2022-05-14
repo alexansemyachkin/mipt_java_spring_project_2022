@@ -24,7 +24,7 @@ public class Question {
     private int rightAnswerIndex;
 
     /** Field subject with relation many-to-one */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Subject subject;
 
