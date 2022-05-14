@@ -58,7 +58,7 @@ public class AdminHomePageController {
 
     /**
      * saves subject to database
-     * @param subject Subject to save model
+     * @param subject SubjectDTO to save model
      * @return redirects to admin home page
      */
     @PostMapping("admin/home/addSubject")

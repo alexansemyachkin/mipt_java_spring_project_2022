@@ -1,6 +1,7 @@
 package ru.mipt.remotesession.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.util.Lazy;
 
 import javax.persistence.*;
@@ -30,8 +31,9 @@ public class PossibleAnswers {
 
 
     /** Field question with relation one-to-one */
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @MapsId
+    @JsonIgnore
     private Question question;
 
 
